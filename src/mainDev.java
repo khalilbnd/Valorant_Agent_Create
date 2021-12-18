@@ -1,13 +1,15 @@
 
 import javax.swing.*;
 
-public class main extends JFrame {
+public class mainDev extends JFrame {
 
-    main(){
+    mainDev(){
         super("VALORANT : Creer votre agent ");
 
         ImageIcon backGround = new ImageIcon("./assets/bg-pic/bg.png");
         JLabel bgLab = new JLabel(backGround);
+
+        JButton quitter = new JButton("Quitter");
 
         bgLab.setBounds(0, 0, 970, 546);
         this.setUndecorated(true);
@@ -22,6 +24,6 @@ public class main extends JFrame {
         this.setVisible(true);
     }
     public static void main(String[] args){
-       new main();
+       new mainDev();
     }
 }
