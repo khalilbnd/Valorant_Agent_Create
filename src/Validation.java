@@ -27,12 +27,17 @@ public class Validation implements ActionListener {
 
         if(nEmpty || gEmpty || tEmpty || cEmpty || aEmpty)
             new noValid();
-        else
+        else {
             new Valid(this.name.getText(),
-                      this.gender.getItemAt(this.gender.getSelectedIndex()),
-                      this.taille.getText(),
-                      this.color.getItemAt(this.color.getSelectedIndex()),
-                      this.age.getSelection().getActionCommand());
-
+                    this.gender.getItemAt(this.gender.getSelectedIndex()),
+                    this.taille.getText(),
+                    this.color.getItemAt(this.color.getSelectedIndex()),
+                    this.age.getSelection().getActionCommand());
+            new insertDB(this.name.getText(),
+                    this.gender.getItemAt(this.gender.getSelectedIndex()),
+                    this.taille.getText(),
+                    this.color.getItemAt(this.color.getSelectedIndex()),
+                    this.age.getSelection().getActionCommand());
+        }
     }
 }

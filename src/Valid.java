@@ -10,11 +10,11 @@ public class Valid extends JOptionPane {
         ImageIcon agents = new ImageIcon(path);
 
         showMessageDialog(null
-                , "VOTRE FORMULAIRE A ETE BIEN SAISI :" +
+                , "VOTRE FORMULAIRE A ETE BIEN SAISI :\n" +
                 "Nom : \t" + name + "\n" +
                 "Sexe : \t" + gender + "\n" +
                 "Taille : \t" + taille + "\n" +
                 "Couleur des cheveux : \t" + color + "\n" +
-                "Age : \t" + color + "\n", "VOTRE FORMULAIRE", PLAIN_MESSAGE, agents);
+                "Age : \t" + age + "\n", "VOTRE FORMULAIRE", PLAIN_MESSAGE, agents);
     }
 }

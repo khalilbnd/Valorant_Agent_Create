@@ -26,6 +26,7 @@ public class SecondFrame extends JFrame {
         ButtonGroup age = new ButtonGroup();
 
         JButton vButton = new JButton("Valider");
+        JButton aList = new JButton("Agent List");
 
         JLabel tAge = new JLabel("Tranche d'age");
 
@@ -86,13 +87,28 @@ public class SecondFrame extends JFrame {
         age.add(b3);
 
         vButton.setFont(new Font("monospace", Font.BOLD, 17));
-        vButton.setBounds(500,360,100,50);
+        vButton.setBounds(590,360,100,50);
         vButton.setBackground(mainDev.valoCol);
         vButton.setForeground(Color.white);
         vButton.setBorder(new LineBorder(Color.white));
         vButton.setFocusable(false);
 
         vButton.addActionListener(new Validation(nameInp, sexeInp, tailleInp, colorInp, age));
+
+        aList.setFont(new Font("monospace", Font.BOLD, 17));
+        aList.setBounds(420, 360, 150, 50);
+        aList.setBackground(mainDev.valoCol);
+        aList.setForeground(Color.white);
+        aList.setBorder(new LineBorder(Color.white));
+        aList.setFocusable(false);
+
+        aList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Va jeter un coup d'oeil sur la console du java(Intelij IDEA)", "Indication", JOptionPane.INFORMATION_MESSAGE);
+                new displayDB();
+            }
+        });
 
 
 
@@ -138,7 +154,7 @@ public class SecondFrame extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if(!((c <= '9' && c >= '0') || c == '.' || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE )) {
+                if(!((c <= '9' && c >= '0') || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE )) {
                     e.consume();
                 }
             }
@@ -189,6 +205,7 @@ public class SecondFrame extends JFrame {
 
 
         this.add(useless);
+        this.add(aList);
         this.add(vButton);
         this.add(tAge);
         this.add(b1);
