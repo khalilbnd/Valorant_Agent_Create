@@ -1,3 +1,3 @@
-Added new classes and new assets\n
-Finish all the program \n
-it left Just database\n
+Added new classes and new assets
+Finish all the program 
+it left Just database
