@@ -41,7 +41,7 @@ and if we check in MySQL Shell, we will find everything work good
 guess u really like this repositories, i lost this project before... cuz i erase my disk by mistake, like thanos erase half of the world xD
 
 Just contact me if you need anything :
-E-mail : mohamed.beneddra.etu@univ-mosta.dz
-Instagram : khalilbnd.exe
+E-mail : mohamed.beneddra.etu@univ-mosta.dz / 
+Instagram : khalilbnd.exe / 
 Facebook : Khalil Beneddra
 
