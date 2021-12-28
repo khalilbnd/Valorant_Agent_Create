@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class mainDev extends JFrame {
+    public static Color valoCol = new Color(0xFA4A57);
     mainDev(){
         super("VALORANT : Creer votre agent ");
 
@@ -15,7 +16,7 @@ public class mainDev extends JFrame {
         this.addMouseListener(move);
         this.addMouseMotionListener(move);
 
-        Color valoCol = new Color(0xFA4A57);
+
 
         ImageIcon backGround = new ImageIcon("./assets/bg-pic/bg.png");
         ImageIcon logo = new ImageIcon("./assets/logo/valoLogo.png");
@@ -93,7 +94,7 @@ public class mainDev extends JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                xQuitter.setForeground(Color.red);
+                xQuitter.setForeground(valoCol);
             }
 
             @Override

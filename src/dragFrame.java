@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-class dragFrame extends MouseAdapter {
+public class dragFrame extends MouseAdapter {
     private int posX, posY;
     private final JFrame frame;
 

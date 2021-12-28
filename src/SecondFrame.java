@@ -3,6 +3,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class SecondFrame extends JFrame {
 
@@ -16,6 +17,17 @@ public class SecondFrame extends JFrame {
 
         //JTextField
         JTextField nameInp = new JTextField("Nom" , 25);
+        String[] sexe = {"   Sexe", "   Male", "   Female", "   Indéterminé"};
+        JComboBox<String> sexeInp = new JComboBox<>(sexe);
+        JTextField tailleInp = new JTextField("Taille (en cm)");
+        String[] color = {"   Couleur de cheveux", "   Noir", "   Brun", "   Auburn", "   Chatain", "   Roux", "   Blond", "   Blanc"};
+        JComboBox<String> colorInp = new JComboBox<>(color);
+        JRadioButton b1 = new JRadioButton("0-16"), b2 = new JRadioButton("17-35"), b3 = new JRadioButton("36-80");
+        ButtonGroup age = new ButtonGroup();
+
+        JButton vButton = new JButton("Valider");
+
+        JLabel tAge = new JLabel("Tranche d'age");
 
         ImageIcon bg = new ImageIcon("./assets/bg-pic/secBg.jpg");
         JLabel bgLab = new JLabel(bg);
@@ -24,36 +36,92 @@ public class SecondFrame extends JFrame {
         JLabel reduire = new JLabel("_");
 
         nameInp.setFont(new Font("monospace", Font.BOLD, 17));
-        nameInp.setBounds(400, 100, 300, 40);
+        nameInp.setBounds(400, 70, 300, 40);
+        nameInp.setBorder(new EmptyBorder(0,19,0,0));
         nameInp.setForeground(Color.gray);
-        nameInp.setBorder(new EmptyBorder(12,20,11,100));
+
+        sexeInp.setFont(new Font("monospace", Font.BOLD, 17));
+        sexeInp.setBounds(400, 120, 300,40);
+        sexeInp.setForeground(Color.gray);
+        sexeInp.setRenderer(new CBLayout(sexeInp));
+
+        tailleInp.setFont(new Font("monospace", Font.BOLD, 17));
+        tailleInp.setBounds(400, 170, 300, 40);
+        tailleInp.setBorder(new EmptyBorder(0,19,0,0));
+        tailleInp.setForeground(Color.gray);
+
+        colorInp.setFont(new Font("monospace", Font.BOLD, 17));
+        colorInp.setBounds(400, 220, 300,40);
+        colorInp.setForeground(Color.gray);
+        colorInp.setRenderer(new CBLayout(colorInp));
+
+        tAge.setFont(new Font("monospace", Font.BOLD, 17));
+        tAge.setBounds(490, 260, 200, 40);
+        tAge.setOpaque(false);
+        tAge.setForeground(Color.white);
+
+        b1.setActionCommand("0-16");
+        b1.setFocusable(false);
+        b1.setFont(new Font("monospace", Font.BOLD, 17));
+        b1.setBounds(415, 290, 80, 40);
+        b1.setForeground(Color.white);
+        b1.setOpaque(false);
+
+        b2.setActionCommand("17-35");
+        b2.setFocusable(false);
+        b2.setFont(new Font("monospace", Font.BOLD, 17));
+        b2.setBounds(515, 290, 80, 40);
+        b2.setForeground(Color.white);
+        b2.setOpaque(false);
+
+        b3.setActionCommand("36-80");
+        b3.setFocusable(false);
+        b3.setFont(new Font("monospace", Font.BOLD, 17));
+        b3.setBounds(615, 290, 80, 40);
+        b3.setForeground(Color.white);
+        b3.setOpaque(false);
+
+        age.add(b1);
+        age.add(b2);
+        age.add(b3);
+
+        vButton.setFont(new Font("monospace", Font.BOLD, 17));
+        vButton.setBounds(500,360,100,50);
+        vButton.setBackground(mainDev.valoCol);
+        vButton.setForeground(Color.white);
+        vButton.setBorder(new LineBorder(Color.white));
+        vButton.setFocusable(false);
+
+        vButton.addActionListener(new Validation(nameInp, sexeInp, tailleInp, colorInp, age));
+
+
 
         nameInp.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                nameInp.setText("");
-                nameInp.setForeground(Color.red);
-                nameInp.setBorder(new EmptyBorder(12,20,11,100));
-                nameInp.getCaret().setVisible(true);
+                if(Objects.equals(nameInp.getText(), "Nom")){
+                    nameInp.setText("");
+                    nameInp.setForeground(mainDev.valoCol);
+                    nameInp.setBorder(new EmptyBorder(12, 20, 11, 0));
+                    nameInp.getCaret().setVisible(true);
+                }
             }
 
         });
-        addMouseListener(new MouseAdapter() {
+        tailleInp.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
-                if(nameInp.getText().isEmpty()){
-                    nameInp.setText("Nom");
-                    nameInp.setForeground(Color.gray);
-                    nameInp.setBorder(new LineBorder(Color.gray));
-                    nameInp.setBorder(new EmptyBorder(12,20,11,100));
-                    nameInp.getCaret().setVisible(false);
-                }
-                else {
-                    nameInp.setBorder(new EmptyBorder(12,20,11,100));
-                    nameInp.getCaret().setVisible(false);
+            public void mousePressed(MouseEvent e) {
+                if(Objects.equals(tailleInp.getText(), "Taille (en cm)")){
+                    tailleInp.setText("");
+                    tailleInp.setForeground(mainDev.valoCol);
+                    tailleInp.setBorder(new EmptyBorder(12, 20, 11, 0));
+                    tailleInp.getCaret().setVisible(true);
                 }
             }
+
         });
+        addMouseListener(new InputListener(nameInp));
+        addMouseListener(new InputListener(tailleInp));
 
         nameInp.addKeyListener(new KeyAdapter() {
             @Override
@@ -66,6 +134,17 @@ public class SecondFrame extends JFrame {
 
         }
     );
+        tailleInp.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if(!((c <= '9' && c >= '0') || c == '.' || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE )) {
+                    e.consume();
+                }
+            }
+
+        }
+        );
 
         xQuitter.setFont(new Font("monospace", Font.BOLD, 15));
         xQuitter.setForeground(Color.white);
@@ -78,7 +157,7 @@ public class SecondFrame extends JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                xQuitter.setForeground(Color.red);
+                xQuitter.setForeground(mainDev.valoCol);
             }
 
             @Override
@@ -108,7 +187,16 @@ public class SecondFrame extends JFrame {
         });
         dragFrame move = new dragFrame(this);
 
+
         this.add(useless);
+        this.add(vButton);
+        this.add(tAge);
+        this.add(b1);
+        this.add(b2);
+        this.add(b3);
+        this.add(colorInp);
+        this.add(tailleInp);
+        this.add(sexeInp);
         this.add(nameInp);
         this.add(reduire);
         this.add(xQuitter);
